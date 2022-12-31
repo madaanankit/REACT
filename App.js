@@ -8,5 +8,5 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(container);  
 
 // never keep package-lock in git ignore
-// parcel does hot module reloading(HMR) which watches every file for any update using File Watcher Algorithm
+// parcel does hot module replacement(HMR) which watches every file for any update using File Watcher Algorithm
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { restaurantList } from "../constants";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 // react hooks - js function
 // useState - returns an array
@@ -22,6 +23,7 @@ const Body = () => {
     setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
   }
   if (!allrestaurants) return null;
+  // if (filteredrestaurants?.length === 0) return <h1>No Restarants Found!!</h1>;
   return allrestaurants?.length === 0 ? (
     <Shimmer />
   ) : (
@@ -52,7 +54,12 @@ const Body = () => {
         ) : (
           filteredrestaurants.map((restaurant) => {
             return (
-              <RestaurantCard {...restaurant.data} key={restaurant.data.id} />
+              <Link
+                to={"/restaurant/" + restaurant.data.id}
+                key={restaurant.data.id}
+              >
+                <RestaurantCard {...restaurant.data} />
+              </Link>
             );
           })
         )}

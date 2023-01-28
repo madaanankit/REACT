@@ -12,7 +12,8 @@
   display: flex;
 }
 
-.nav-items > ul > li {
+.nav-items > ul > li,
+.nav-items > ul > Link > li {
   padding: 10px;
 }
 
@@ -39,4 +40,15 @@
 }
 .restaurantImg {
   width: 200px;
+}
+.shimmer-card {
+  background: lightgray;
+  width: 200px;
+  height: 350px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+}
+.menu {
+  display: flex;
 }

@@ -21,6 +21,16 @@ import Header from "./components/Header"; // default import
 import { Title } from "./components/Header"; // named import
 import Body from "./components/Body";
 import Footer from "./components/Footer";
+import About from "./components/About";
+import Error from "./components/Error";
+import Contact from "./components/Contact";
+import RestaurantMenu from "./components/RestaurantMenu";
+import {
+  createBrowserRouter,
+  Route,
+  RouterProvider,
+  Outlet,
+} from "react-router-dom";
 // React Component
 // Functional Component = new way of writing code
 // class based component = old way
@@ -38,14 +48,41 @@ const AppLayout = () => {
   return (
     <>
       <Header />
-      <Body />
+      {}
+      <Outlet />
       <Footer />
     </>
   );
 };
 
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/restaurant/:id",
+        element: <RestaurantMenu />,
+      },
+    ],
+  },
+]);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter} />);
 
 // never keep package-lock in git ignore
 // parcel does hot module replacement(HMR) which watches every file for any update using File Watcher Algorithm

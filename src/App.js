@@ -15,7 +15,7 @@
         -Copyright
 */
 
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header"; // default import
 import { Title } from "./components/Header"; // named import
@@ -26,6 +26,7 @@ import Error from "./components/Error";
 import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
+import Shimmer from "./components/Shimmer";
 import {
   createBrowserRouter,
   Route,
@@ -44,6 +45,8 @@ import {
 const styleObj = {
   backgroundColor: "aqua",
 };
+
+const Instamart = lazy(() => import("./components/Instamart"));
 
 const AppLayout = () => {
   return (
@@ -83,6 +86,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:id",
         element: <RestaurantMenu />,
+      },
+      {
+        path: "/instamart",
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Instamart />
+          </Suspense>
+        ),
       },
     ],
   },

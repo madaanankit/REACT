@@ -26,8 +26,8 @@ class About extends Component {
         <h1>About Us</h1>
         <div>This is my first React Course✔</div>
         {/* <Outlet /> */}
-        {/* <Profile name={"Ankit"} /> */}
-        <ProfileClass name={"Ankit"} />
+        <Profile name={"Ankit"} />
+        {/* <ProfileClass name={"Ankit"} /> */}
       </div>
     );
   }

@@ -47,6 +47,7 @@ const styleObj = {
 };
 
 const Instamart = lazy(() => import("./components/Instamart"));
+const AboutUs = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
   return (
@@ -71,7 +72,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense>
+            <AboutUs />
+          </Suspense>
+        ),
         children: [
           {
             path: "profile",

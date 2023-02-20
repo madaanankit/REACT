@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { restaurantList } from "../constants";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/util";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
 
 // react hooks - js function
 // useState - returns an array
@@ -13,6 +14,7 @@ const Body = () => {
   const [searchText, setSearchText] = useState(""); // To create state variables
   const [allrestaurants, setAllRestaurants] = useState([]);
   const [filteredrestaurants, setFilteredRestaurants] = useState([]);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getRestaurants();
@@ -57,6 +59,10 @@ const Body = () => {
         >
           Search
         </button>
+        <input
+          value={user.name}
+          onChange={(e) => setUser({ name: e.target.value })}
+        ></input>
       </div>
       <div className="flex flex-wrap m-5">
         {filteredrestaurants?.length === 0 ? (

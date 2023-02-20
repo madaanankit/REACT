@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 const loggedInUser = () => {
   return true;
@@ -16,6 +17,7 @@ const Title = () => (
 const Header = () => {
   const [title, setTitle] = useState("Food Villa");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { user } = useContext(UserContext);
   return (
     <div className="flex justify-between bg-pink-50">
       <Title />
@@ -38,7 +40,10 @@ const Header = () => {
         </ul>
       </div>
       {isLoggedIn ? (
-        <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+        <div>
+          <div className="font-bold text-blue-400">{user.name}</div>
+          <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+        </div>
       ) : (
         <button onClick={() => setIsLoggedIn(true)}>Login</button>
       )}
